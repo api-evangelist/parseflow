@@ -1,0 +1,114 @@
+focus: "1.3"
+provider:
+  id: parseflow
+  name: Parseflow
+  homepage: https://docs.parseflow.tech/
+  paymentProcessor: Whop
+
+source:
+  reconciled: true
+  references:
+    - https://docs.parseflow.tech/docs/pricing
+    - https://docs.parseflow.tech/docs/billing
+    - https://docs.parseflow.tech/docs/limits
+  asOf: 2026-05-27
+
+# FOCUS 1.3 alignment for Parseflow's commercial surface. Parseflow bills as a
+# flat monthly subscription with a hard request cap; there is no metered
+# overage and no per-request pricing beyond the plan fee. BYOK-mode model
+# inference is billed by the underlying model provider, not by Parseflow.
+
+billingAccountId: parseflow
+billingCurrency: USD
+billingPeriodStart: "{{ subscription_start_date }}"
+billingPeriodEnd: "{{ subscription_start_date + P30D }}"
+
+services:
+  - serviceName: Parseflow API
+    serviceCategory: AI and Machine Learning
+    serviceSubcategory: Document AI
+    publisherName: Parseflow
+    providerName: Parseflow
+    invoiceIssuerName: Whop
+
+skus:
+  - skuId: parseflow-starter
+    skuName: Parseflow Starter Monthly Subscription
+    skuPriceId: starter-10usd-rolling30
+    pricingCategory: Committed
+    pricingUnit: Subscription
+    pricingQuantity: 1
+    listUnitPrice: 10.00
+    chargeCategory: Usage
+    chargeFrequency: Recurring
+    chargeSubcategory: Subscription
+    consumedUnit: request
+    consumedQuantityCap: 500
+    cappedQuantityPeriod: rolling_30_days
+    effectiveCostPerRequestAtCap: 0.02
+    notes: |
+      Hard-capped at 500 requests per rolling 30 days. Cost per request is
+      undefined for usage below the cap (sunk subscription cost); at full
+      utilization, effective cost is $0.020/request.
+
+  - skuId: parseflow-growth
+    skuName: Parseflow Growth Monthly Subscription
+    skuPriceId: growth-15usd-rolling30
+    pricingCategory: Committed
+    pricingUnit: Subscription
+    pricingQuantity: 1
+    listUnitPrice: 15.00
+    chargeCategory: Usage
+    chargeFrequency: Recurring
+    chargeSubcategory: Subscription
+    consumedUnit: request
+    consumedQuantityCap: 1000
+    cappedQuantityPeriod: rolling_30_days
+    effectiveCostPerRequestAtCap: 0.015
+    notes: |
+      Hard-capped at 1,000 requests per rolling 30 days. At full utilization,
+      effective cost is $0.015/request.
+
+  - skuId: parseflow-byok
+    skuName: Parseflow BYOK Advanced Lane
+    pricingCategory: On Demand
+    pricingUnit: Subscription
+    listUnitPrice: 0.00
+    chargeCategory: Usage
+    chargeFrequency: Usage-Based
+    notes: |
+      No Parseflow-side fee for BYOK mode beyond the active paid lane; model
+      inference cost is billed on the caller's own OpenAI / Anthropic /
+      Google account and is out of FOCUS scope for Parseflow.
+
+chargeTypes:
+  - chargeCategory: Usage
+    chargeSubcategory: Subscription
+    description: Monthly subscription fee for plan access.
+  - chargeCategory: Adjustment
+    chargeSubcategory: Refund
+    description: Whop-initiated refund per Whop refund policy.
+
+commitmentDiscounts: []
+discounts: []
+
+tags:
+  recommended:
+    - billing.plan      # starter | growth | byok
+    - billing.processor # whop
+    - costCenter
+    - environment
+
+unsupportedDimensions:
+  - chargeCategory: Tax
+    rationale: Parseflow does not enumerate tax line items; Whop handles tax collection where applicable.
+  - chargeCategory: Credit
+    rationale: No credits surface in the public pricing.
+
+notes: |
+  Parseflow's commercial surface is intentionally minimal: two flat monthly
+  subscriptions plus a BYOK advanced lane. There is no metered overage —
+  exceeding the monthly cap returns HTTP 429 / MONTHLY_USAGE_EXCEEDED rather
+  than incurring additional charges. For FinOps tracking, the most useful
+  unit-economics view is `effectiveCostPerRequestAtCap`, surfaced via
+  /v2/usage's `requests_used` and `requests_limit` fields.

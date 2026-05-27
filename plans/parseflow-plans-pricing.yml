@@ -1,0 +1,122 @@
+apiCommons: plans/0.1
+provider:
+  id: parseflow
+  name: Parseflow
+  homepage: https://docs.parseflow.tech/
+  pricing: https://docs.parseflow.tech/docs/pricing
+  billing: https://docs.parseflow.tech/docs/billing
+  paymentProcessor: Whop
+
+source:
+  reconciled: true
+  references:
+    - https://docs.parseflow.tech/docs/pricing
+    - https://docs.parseflow.tech/docs/billing
+    - https://docs.parseflow.tech/docs/limits
+  asOf: 2026-05-27
+
+currency: USD
+billingPeriod: rolling_30_days
+
+plans:
+  - id: starter
+    name: Starter
+    listed: true
+    price:
+      amount: 10
+      currency: USD
+      period: month
+    description: |
+      Lowest-cost entry plan for evaluating Parseflow and running low-volume
+      production workloads.
+    purchaseUrl: https://docs.parseflow.tech/docs/billing
+    entitlements:
+      requestsPerMonth: 500
+      requestsPerMinute: 20
+      maxUploadMB: 10
+      asyncJobs: true
+      batchProcessing: true
+      deterministicMode: true
+      byokSupported: true
+      webhookDelivery: true
+      searchIndex: true
+    overage:
+      policy: hard_cap
+      behavior: |
+        Once requests_used == 500 in the rolling 30-day window the API returns
+        HTTP 429 with error code MONTHLY_USAGE_EXCEEDED. No metered overage;
+        upgrade to Growth or wait for the rolling window to advance.
+
+  - id: growth
+    name: Growth
+    listed: true
+    price:
+      amount: 15
+      currency: USD
+      period: month
+    description: |
+      Higher monthly cap for teams running regular batch jobs or webhook-driven
+      pipelines.
+    purchaseUrl: https://docs.parseflow.tech/docs/billing
+    entitlements:
+      requestsPerMonth: 1000
+      requestsPerMinute: 20
+      maxUploadMB: 10
+      asyncJobs: true
+      batchProcessing: true
+      deterministicMode: true
+      byokSupported: true
+      webhookDelivery: true
+      searchIndex: true
+    overage:
+      policy: hard_cap
+      behavior: |
+        Hard-capped at 1,000 requests per rolling 30 days; same 429 +
+        MONTHLY_USAGE_EXCEEDED behavior as Starter.
+
+  - id: byok
+    name: BYOK Advanced Lane
+    listed: true
+    price:
+      amount: 0
+      currency: USD
+      period: month
+      note: |
+        No Parseflow-side inference subsidy. Caller is responsible for all
+        model-provider charges on their own OpenAI / Anthropic / Google
+        account via X-BYOK-Key.
+    description: |
+      Advanced extraction mode (mode=byok_assisted) using the caller's own
+      model provider key. Lower per-minute ceiling, no monthly Parseflow cap
+      beyond the underlying paid lane.
+    entitlements:
+      requestsPerMinute: 5
+      advancedExtraction: true
+      modelInferenceBilledTo: caller
+      supportedProviders: [openai, anthropic, google]
+      requiredHeaders: [X-BYOK-Key]
+      requiredParams: [byok_provider, byok_model]
+
+billing:
+  processor:
+    name: Whop
+    portal: https://whop.com/
+    capabilities:
+      - subscription
+      - cancellation
+      - refund
+      - keyIssuance
+  apiKeyIssuance:
+    method: email
+    prefix: pfk_
+    revocation: |
+      Cancelling the Whop membership revokes the associated API key.
+  refunds: |
+    Refunds follow Whop's standard refund policy; cancellation can be
+    performed any time from the Whop customer portal.
+
+requestCountingRules:
+  - "Each call to /v2/process counts as 1 request."
+  - "Each call to /v2/jobs counts as 1 request."
+  - "Each poll of /v2/jobs/{job_id} counts as 1 request — prefer webhook delivery."
+  - "Each item inside a /v2/batch payload still consumes 1 request from the monthly cap."

@@ -6,6 +6,17 @@ image: https://docs.parseflow.tech/img/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-27'
 modified: '2026-05-27'
+x-artifacts:
+  openapi: openapi/parseflow-openapi.json
+  capabilities: capabilities/
+  jsonSchema: json-schema/
+  jsonLd: json-ld/parseflow-context.jsonld
+  examples: examples/
+  rules: rules/parseflow-rules.yml
+  vocabulary: vocabulary/parseflow-vocabulary.yml
+  plans: plans/parseflow-plans-pricing.yml
+  rateLimits: rate-limits/parseflow-rate-limits.yml
+  finops: finops/parseflow-finops.yml
 tags:
   - Document Parsing
   - PDF

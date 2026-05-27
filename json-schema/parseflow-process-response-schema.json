@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.parseflow.tech/schemas/process-response.json",
+  "title": "Parseflow Process Response",
+  "description": "Response payload returned by POST /v2/process.",
+  "type": "object",
+  "required": ["document_id", "chunks"],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "description": "Stable identifier for the processed document."
+    },
+    "filename": {
+      "type": ["string", "null"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["deterministic", "byok_assisted", "basic"]
+    },
+    "chunk_count": { "type": "integer", "minimum": 0 },
+    "chunks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Chunk" }
+    },
+    "extraction": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Structured fields extracted per preset or schema_json."
+    },
+    "markdown": {
+      "type": ["string", "null"]
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "requests_remaining": { "type": "integer" },
+        "monthly_cap": { "type": "integer" }
+      }
+    }
+  },
+  "$defs": {
+    "Chunk": {
+      "type": "object",
+      "required": ["index", "text"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 },
+        "text": { "type": "string" },
+        "tokens": { "type": "integer" },
+        "page": { "type": ["integer", "null"] },
+        "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

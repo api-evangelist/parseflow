@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.parseflow.tech/schemas/indexed-document.json",
+  "title": "Parseflow Indexed Document",
+  "description": "Document record stored in the Parseflow keyword search index (POST /v2/index, GET /v2/search/documents/{id}).",
+  "type": "object",
+  "required": ["document_id", "indexed_at"],
+  "properties": {
+    "document_id": { "type": "string" },
+    "filename": { "type": ["string", "null"] },
+    "indexed_at": { "type": "string", "format": "date-time" },
+    "chunk_count": { "type": "integer", "minimum": 0 },
+    "mode": {
+      "type": "string",
+      "enum": ["basic", "deterministic", "byok_assisted"]
+    },
+    "extraction": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    },
+    "snippet": { "type": ["string", "null"] },
+    "metadata": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    }
+  }
+}

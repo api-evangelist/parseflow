@@ -1,0 +1,64 @@
+apiVersion: naftiko.io/v1
+kind: Capability
+metadata:
+  name: async-jobs
+  version: 1.0.0-alpha2
+  labels:
+    provider: parseflow
+    family: jobs
+    domain: document-ai
+spec:
+  title: Async Document Jobs
+  description: |
+    Create long-running document processing jobs, poll their status, and trigger
+    or simulate webhook delivery. Recommended for documents larger than the
+    synchronous timeout budget or when webhook delivery is preferred over
+    polling.
+  sharedAPI:
+    $ref: ./shared/parseflow-api.yaml
+  operations:
+    - name: create-job
+      consume:
+        http:
+          method: POST
+          path: /v2/jobs
+          contentType: multipart/form-data
+      inputs:
+        - { name: file, type: file }
+        - { name: text, type: string }
+        - { name: mode, type: string, default: deterministic }
+        - { name: chunk_size, type: integer, default: 2000 }
+        - { name: overlap, type: integer, default: 200 }
+        - { name: preset, type: string }
+        - { name: callback_url, type: string, description: Webhook delivery URL }
+        - { name: byok_provider, type: string }
+        - { name: byok_model, type: string }
+    - name: get-job
+      consume:
+        http:
+          method: GET
+          path: /v2/jobs/{job_id}
+      inputs:
+        - { name: job_id, type: string, in: path, required: true }
+    - name: deliver-job
+      consume:
+        http:
+          method: POST
+          path: /v2/jobs/{job_id}/deliver
+          contentType: application/x-www-form-urlencoded
+      inputs:
+        - { name: job_id, type: string, in: path, required: true }
+        - { name: callback_url, type: string }
+  expose:
+    rest:
+      path: /capabilities/async-jobs
+    mcp:
+      tools:
+        - parseflow_create_job
+        - parseflow_get_job
+        - parseflow_deliver_job
+  outputs:
+    schemaRef: ../json-schema/parseflow-job-status-schema.json
+  notes: |
+    Polling /v2/jobs/{job_id} counts as one billable request per poll. Prefer
+    webhook delivery via callback_url to conserve monthly quota.

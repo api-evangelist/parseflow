@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.parseflow.tech/schemas/job-status.json",
+  "title": "Parseflow Job Status",
+  "description": "Response from POST /v2/jobs and GET /v2/jobs/{job_id}.",
+  "type": "object",
+  "required": ["job_id", "status"],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "description": "Server-issued job identifier."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["queued", "running", "succeeded", "failed", "delivered"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "mode": {
+      "type": "string",
+      "enum": ["deterministic", "byok_assisted", "basic"]
+    },
+    "callback_url": { "type": ["string", "null"], "format": "uri" },
+    "result": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Populated when status == succeeded; mirrors the /v2/process response shape."
+    },
+    "delivery": {
+      "type": ["object", "null"],
+      "properties": {
+        "attempts": { "type": "integer" },
+        "last_attempt_at": { "type": "string", "format": "date-time" },
+        "last_status_code": { "type": "integer" },
+        "delivered": { "type": "boolean" }
+      }
+    },
+    "error": {
+      "type": ["object", "null"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

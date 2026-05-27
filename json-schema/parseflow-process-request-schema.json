@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.parseflow.tech/schemas/process-request.json",
+  "title": "Parseflow Process Request",
+  "description": "Multipart form payload accepted by POST /v2/process. Either `file` or `text` must be supplied.",
+  "type": "object",
+  "properties": {
+    "file": {
+      "type": "string",
+      "contentMediaType": "application/octet-stream",
+      "description": "Binary document upload (PDF, DOCX, or TXT)."
+    },
+    "text": {
+      "type": "string",
+      "description": "Raw text payload used in lieu of a file upload."
+    },
+    "chunk_size": {
+      "type": "integer",
+      "minimum": 200,
+      "maximum": 10000,
+      "default": 2000,
+      "description": "Maximum chunk length in characters."
+    },
+    "overlap": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2000,
+      "default": 200,
+      "description": "Character overlap between adjacent chunks."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["deterministic", "byok_assisted", "basic"],
+      "default": "deterministic"
+    },
+    "output_format": {
+      "type": "string",
+      "enum": ["json", "markdown", "zip"],
+      "default": "json"
+    },
+    "include_markdown": {
+      "type": "boolean",
+      "default": false
+    },
+    "preset": {
+      "type": ["string", "null"],
+      "description": "Named extraction preset, e.g. invoice, receipt, contract."
+    },
+    "schema_json": {
+      "type": ["string", "null"],
+      "description": "JSON-encoded schema for caller-driven structured extraction."
+    },
+    "enforce_schema": {
+      "type": "boolean",
+      "default": false
+    },
+    "byok_provider": {
+      "type": ["string", "null"],
+      "enum": ["openai", "anthropic", "google", null]
+    },
+    "byok_model": {
+      "type": ["string", "null"]
+    }
+  },
+  "anyOf": [
+    { "required": ["file"] },
+    { "required": ["text"] }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "parseflow": "https://docs.parseflow.tech/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Document": "schema:DigitalDocument",
+    "Service": "schema:WebAPI",
+    "Organization": "schema:Organization",
+    "Offer": "schema:Offer",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+
+    "documentId": { "@id": "parseflow:documentId", "@type": "xsd:string" },
+    "filename":   { "@id": "schema:name" },
+    "contentSize": "schema:contentSize",
+    "encodingFormat": "schema:encodingFormat",
+
+    "Chunk":      "parseflow:Chunk",
+    "chunks":     { "@id": "parseflow:chunks", "@container": "@list" },
+    "chunkIndex": { "@id": "parseflow:chunkIndex", "@type": "xsd:integer" },
+    "text":       "schema:text",
+    "tokens":     { "@id": "parseflow:tokens", "@type": "xsd:integer" },
+    "page":       { "@id": "parseflow:page", "@type": "xsd:integer" },
+    "confidence": { "@id": "parseflow:confidence", "@type": "xsd:decimal" },
+
+    "Extraction": "parseflow:Extraction",
+    "extraction": { "@id": "parseflow:extraction", "@type": "@id" },
+    "preset":     { "@id": "parseflow:preset" },
+    "schema_json": { "@id": "parseflow:schemaJson" },
+
+    "Job":        "parseflow:Job",
+    "jobId":      { "@id": "parseflow:jobId" },
+    "status":     "schema:actionStatus",
+    "createdAt":  { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "updatedAt":  { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+    "callbackUrl":{ "@id": "parseflow:callbackUrl", "@type": "@id" },
+
+    "IndexedDocument": "parseflow:IndexedDocument",
+    "indexedAt":  { "@id": "parseflow:indexedAt", "@type": "xsd:dateTime" },
+    "snippet":    { "@id": "parseflow:snippet" },
+
+    "SearchResult": "parseflow:SearchResult",
+    "results":    { "@id": "parseflow:results", "@container": "@list" },
+    "score":      { "@id": "parseflow:score", "@type": "xsd:decimal" },
+
+    "Plan":       "schema:Offer",
+    "Quota":      "parseflow:Quota",
+    "requestsUsed":      { "@id": "parseflow:requestsUsed", "@type": "xsd:integer" },
+    "requestsLimit":     { "@id": "parseflow:requestsLimit", "@type": "xsd:integer" },
+    "requestsRemaining": { "@id": "parseflow:requestsRemaining", "@type": "xsd:integer" },
+    "perMinuteLimit":    { "@id": "parseflow:perMinuteLimit", "@type": "xsd:integer" },
+    "uploadLimitMb":     { "@id": "parseflow:uploadLimitMb", "@type": "xsd:integer" },
+
+    "mode": {
+      "@id": "parseflow:mode",
+      "@type": "@vocab",
+      "@context": {
+        "@vocab": "https://docs.parseflow.tech/ns/mode#"
+      }
+    },
+    "byokProvider": { "@id": "parseflow:byokProvider" },
+    "byokModel":    { "@id": "parseflow:byokModel" }
+  }
+}

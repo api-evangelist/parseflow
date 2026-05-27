@@ -1,0 +1,62 @@
+{
+  "index_document": {
+    "request": {
+      "method": "POST",
+      "url": "https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/v2/index",
+      "headers": {
+        "X-API-Key": "pfk_live_REDACTED",
+        "Content-Type": "multipart/form-data"
+      },
+      "form": {
+        "file": "@policy-handbook-2026.pdf",
+        "document_id": "policy-handbook-2026",
+        "mode": "basic",
+        "chunk_size": 2000,
+        "overlap": 200
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "document_id": "policy-handbook-2026",
+        "filename": "policy-handbook-2026.pdf",
+        "indexed_at": "2026-05-27T18:34:02Z",
+        "chunk_count": 47,
+        "mode": "basic"
+      }
+    }
+  },
+  "search": {
+    "request": {
+      "method": "GET",
+      "url": "https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/v2/search?q=remote+work+stipend&limit=5",
+      "headers": {
+        "X-API-Key": "pfk_live_REDACTED"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "query": "remote work stipend",
+        "limit": 5,
+        "total": 2,
+        "results": [
+          {
+            "document_id": "policy-handbook-2026",
+            "chunk_index": 18,
+            "score": 8.42,
+            "snippet": "Eligible employees receive a $1,200 annual remote work stipend, paid quarterly...",
+            "filename": "policy-handbook-2026.pdf"
+          },
+          {
+            "document_id": "policy-handbook-2026",
+            "chunk_index": 31,
+            "score": 5.11,
+            "snippet": "Remote work stipend usage must be reported via the expense portal within 30 days...",
+            "filename": "policy-handbook-2026.pdf"
+          }
+        ]
+      }
+    }
+  }
+}

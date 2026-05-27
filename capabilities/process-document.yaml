@@ -1,0 +1,67 @@
+apiVersion: naftiko.io/v1
+kind: Capability
+metadata:
+  name: process-document
+  version: 1.0.0-alpha2
+  labels:
+    provider: parseflow
+    family: process
+    domain: document-ai
+spec:
+  title: Process Document
+  description: |
+    Synchronously parse a PDF, DOCX, TXT, or raw text payload into structured
+    chunks, extraction fields, and optional Markdown using Parseflow's
+    deterministic engine (or BYOK-assisted mode when supplied).
+  sharedAPI:
+    $ref: ./shared/parseflow-api.yaml
+  inputs:
+    - name: file
+      type: file
+      description: Document binary (PDF/DOCX/TXT). Required if `text` is not supplied.
+    - name: text
+      type: string
+      description: Raw text input. Required if `file` is not supplied.
+    - name: mode
+      type: string
+      enum: [deterministic, byok_assisted, basic]
+      default: deterministic
+    - name: chunk_size
+      type: integer
+      default: 2000
+    - name: overlap
+      type: integer
+      default: 200
+    - name: output_format
+      type: string
+      enum: [json, markdown, zip]
+      default: json
+    - name: include_markdown
+      type: boolean
+      default: false
+    - name: preset
+      type: string
+      description: Named extraction preset (e.g. invoice, receipt, contract).
+    - name: schema_json
+      type: string
+      description: Caller-supplied JSON Schema for structured extraction.
+    - name: enforce_schema
+      type: boolean
+      default: false
+  consume:
+    http:
+      method: POST
+      path: /v2/process
+      contentType: multipart/form-data
+      headers:
+        Idempotency-Key: "{{ idempotency_key | default(uuid4()) }}"
+  expose:
+    rest:
+      path: /capabilities/process-document
+      method: POST
+    mcp:
+      tool: parseflow_process_document
+      description: Parse a document or text into chunks, fields, and Markdown.
+  outputs:
+    contentType: application/json
+    schemaRef: ../json-schema/parseflow-process-response-schema.json

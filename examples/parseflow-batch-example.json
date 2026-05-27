@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/v2/batch",
+    "headers": {
+      "X-API-Key": "pfk_live_REDACTED",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "preset": "receipt",
+      "mode": "deterministic",
+      "chunk_size": 1500,
+      "overlap": 150,
+      "documents": [
+        {
+          "document_id": "rcpt-001",
+          "filename": "starbucks-2026-05-20.txt",
+          "text": "STARBUCKS #2241  2026-05-20 08:14  Grande latte 5.75  Tax 0.46  Total 6.21  VISA ****4242"
+        },
+        {
+          "document_id": "rcpt-002",
+          "filename": "uber-2026-05-21.txt",
+          "text": "Uber Trip 2026-05-21  Pickup 7th & Mission  Dropoff SFO Terminal 2  Fare 38.20  Tip 5.00  Total 43.20"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "batch_id": "batch_01HZ7N3Y2QZJ8XF6KM2BC9D4R5",
+      "count": 2,
+      "results": [
+        {
+          "document_id": "rcpt-001",
+          "extraction": {
+            "vendor": "STARBUCKS #2241",
+            "date": "2026-05-20",
+            "subtotal": 5.75,
+            "tax": 0.46,
+            "total": 6.21,
+            "payment_method": "VISA ****4242"
+          }
+        },
+        {
+          "document_id": "rcpt-002",
+          "extraction": {
+            "vendor": "Uber",
+            "date": "2026-05-21",
+            "pickup": "7th & Mission",
+            "dropoff": "SFO Terminal 2",
+            "fare": 38.20,
+            "tip": 5.00,
+            "total": 43.20
+          }
+        }
+      ],
+      "usage": {
+        "requests_remaining": 485,
+        "monthly_cap": 500
+      }
+    }
+  }
+}

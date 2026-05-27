@@ -1,0 +1,72 @@
+{
+  "create_job": {
+    "request": {
+      "method": "POST",
+      "url": "https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/v2/jobs",
+      "headers": {
+        "X-API-Key": "pfk_live_REDACTED",
+        "Content-Type": "multipart/form-data"
+      },
+      "form": {
+        "file": "@contract-msa-2026.pdf",
+        "mode": "deterministic",
+        "chunk_size": 2000,
+        "overlap": 200,
+        "preset": "contract",
+        "callback_url": "https://hooks.example.com/parseflow/job-callback"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "job_id": "job_01HZ7N0J9V8KQ3F2C7M4XP1B5R",
+        "status": "queued",
+        "created_at": "2026-05-27T18:31:42Z",
+        "mode": "deterministic",
+        "callback_url": "https://hooks.example.com/parseflow/job-callback"
+      }
+    }
+  },
+  "deliver_job": {
+    "request": {
+      "method": "POST",
+      "url": "https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/v2/jobs/job_01HZ7N0J9V8KQ3F2C7M4XP1B5R/deliver",
+      "headers": {
+        "X-API-Key": "pfk_live_REDACTED",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "form": {
+        "callback_url": "https://hooks.example.com/parseflow/job-callback"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "job_id": "job_01HZ7N0J9V8KQ3F2C7M4XP1B5R",
+        "status": "delivered",
+        "updated_at": "2026-05-27T18:32:11Z",
+        "delivery": {
+          "attempts": 1,
+          "last_attempt_at": "2026-05-27T18:32:11Z",
+          "last_status_code": 200,
+          "delivered": true
+        }
+      }
+    }
+  },
+  "webhook_callback_payload": {
+    "job_id": "job_01HZ7N0J9V8KQ3F2C7M4XP1B5R",
+    "status": "succeeded",
+    "result": {
+      "document_id": "doc_01HZ7N0KFY9TR9F6B2NE8C3D2Q",
+      "chunk_count": 14,
+      "extraction": {
+        "parties": ["Naftiko, Inc.", "ACME SUPPLY CO."],
+        "effective_date": "2026-05-15",
+        "term_months": 12,
+        "governing_law": "Delaware",
+        "termination_notice_days": 30
+      }
+    }
+  }
+}

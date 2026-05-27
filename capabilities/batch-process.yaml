@@ -1,0 +1,38 @@
+apiVersion: naftiko.io/v1
+kind: Capability
+metadata:
+  name: batch-process
+  version: 1.0.0-alpha2
+  labels:
+    provider: parseflow
+    family: batch
+    domain: document-ai
+spec:
+  title: Batch Process Documents
+  description: |
+    Submit a JSON array of text documents for batch parsing and extraction.
+    Each entry can carry its own filename, document_id, chunk settings, mode,
+    and structured-extraction schema.
+  sharedAPI:
+    $ref: ./shared/parseflow-api.yaml
+  inputs:
+    - name: body
+      type: object
+      schemaRef: ../json-schema/parseflow-batch-request-schema.json
+  consume:
+    http:
+      method: POST
+      path: /v2/batch
+      contentType: application/json
+  expose:
+    rest:
+      path: /capabilities/batch-process
+      method: POST
+    mcp:
+      tool: parseflow_batch_process
+      description: Batch-process up to N documents in a single call.
+  outputs:
+    contentType: application/json
+  notes: |
+    Each document inside the batch still counts as one billable request against
+    the Starter (500/mo) or Growth (1000/mo) monthly quota.

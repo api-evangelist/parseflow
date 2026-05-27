@@ -1,0 +1,139 @@
+vocabulary:
+  id: parseflow
+  name: Parseflow Vocabulary
+  description: |
+    Domain vocabulary for Parseflow's document parsing, extraction, and search
+    API. Terms are organized by family (Process, Analyze, Batch, Jobs, Index,
+    Search, Usage, Billing) and cross-referenced to OpenAPI operations and
+    schema.org / JSON-LD context terms.
+  version: "0.20"
+  source:
+    openapi: openapi/parseflow-openapi.json
+    docs: https://docs.parseflow.tech/docs/overview
+
+terms:
+  - term: Document
+    family: core
+    definition: A PDF, DOCX, TXT, or raw-text payload submitted to Parseflow for parsing, extraction, or indexing.
+    schemaOrg: schema:DigitalDocument
+
+  - term: Chunk
+    family: process
+    definition: A contiguous segment of a parsed document, bounded by chunk_size and overlap parameters, returned as an ordered list.
+    properties: [index, text, tokens, page, confidence]
+
+  - term: Chunk Size
+    family: process
+    definition: Maximum length in characters of a single chunk. Default 2000.
+    operationParam: chunk_size
+
+  - term: Overlap
+    family: process
+    definition: Character overlap between adjacent chunks to preserve context across boundaries. Default 200.
+    operationParam: overlap
+
+  - term: Mode
+    family: process
+    definition: The processing strategy selected per request.
+    enum: [deterministic, byok_assisted, basic]
+
+  - term: Deterministic Mode
+    family: process
+    definition: Parseflow's default, rules- and parser-driven extraction path with no model inference cost.
+    enumValue: deterministic
+
+  - term: BYOK
+    family: byok
+    definition: "Bring Your Own Key. Caller supplies provider credentials via X-BYOK-Key plus byok_provider/byok_model to use advanced model-assisted extraction without Parseflow inference subsidy."
+    relatedHeaders: [X-BYOK-Key]
+    relatedParams: [byok_provider, byok_model]
+
+  - term: BYOK Assisted Mode
+    family: byok
+    definition: Processing mode that combines Parseflow parsing with caller-supplied model inference (OpenAI / Anthropic / Google).
+    enumValue: byok_assisted
+
+  - term: Preset
+    family: extraction
+    definition: A named, opinionated extraction template (e.g. invoice, receipt, contract) that pre-configures schema and prompts.
+    operationParam: preset
+
+  - term: Extraction
+    family: extraction
+    definition: Structured fields pulled from a document, either by preset, by caller-supplied JSON Schema, or by deterministic rules.
+    properties: [preset, schema_json, enforce_schema]
+
+  - term: Schema Enforcement
+    family: extraction
+    definition: When enforce_schema is true, extracted output must validate against schema_json or the request fails.
+
+  - term: Job
+    family: jobs
+    definition: An asynchronous unit of document processing identified by job_id, with status transitions queued → running → succeeded/failed → delivered.
+    statuses: [queued, running, succeeded, failed, delivered]
+
+  - term: Callback URL
+    family: jobs
+    definition: HTTPS endpoint that Parseflow POSTs to with the job result once processing completes.
+    operationParam: callback_url
+
+  - term: Webhook Delivery
+    family: jobs
+    definition: Mechanism by which Parseflow notifies the caller of job completion. Preferred over polling to conserve quota.
+
+  - term: Batch
+    family: batch
+    definition: A single /v2/batch request carrying an array of text documents, each processed under the request-level mode/preset/schema or per-item overrides.
+
+  - term: Index
+    family: search
+    definition: Parseflow's keyword document index. Documents committed via /v2/index are retrievable by GET /v2/search and /v2/search/documents/{document_id}.
+
+  - term: Indexed Document
+    family: search
+    definition: A document record stored in the search index, with chunk_count, mode, optional extraction, and indexed_at timestamp.
+
+  - term: Search Score
+    family: search
+    definition: Relevance score returned for each /v2/search hit. Higher is better; no fixed upper bound.
+
+  - term: Quota
+    family: usage
+    definition: The monthly (rolling 30-day) hard cap on billable API requests for the calling key.
+    plans:
+      starter: 500
+      growth: 1000
+
+  - term: Monthly Usage Exceeded
+    family: usage
+    definition: Error code MONTHLY_USAGE_EXCEEDED returned with HTTP 429 once the rolling 30-day quota is hit.
+    httpStatus: 429
+
+  - term: Per-Minute Rate Limit
+    family: usage
+    definition: Per-API-key request-rate ceiling. 20 rpm on Starter/Growth, 5 rpm on the BYOK advanced lane.
+
+  - term: Upload Limit
+    family: usage
+    definition: Maximum size of a single multipart upload (10 MB on Starter and Growth).
+
+  - term: API Key
+    family: auth
+    definition: Stateless `pfk_`-prefixed credential issued by Whop checkout, sent on every request as X-API-Key.
+
+  - term: Idempotency Key
+    family: process
+    definition: Optional caller-supplied UUID on /v2/process; allows safe retry of the same logical request.
+    header: Idempotency-Key
+
+  - term: Gateway Secret
+    family: auth
+    definition: Internal shared secret (X-Docflow-Gateway-Secret) used when calls are fronted by the Docflow gateway. Not used by direct API consumers.
+
+  - term: Stripe Webhook
+    family: billing
+    definition: POST /v2/billing/stripe/webhook — verifies Stripe signatures and issues API keys on checkout.session.completed.
+
+  - term: Whop Webhook
+    family: billing
+    definition: POST /v2/webhooks/whop — receives Whop membership events used to issue and revoke API keys.

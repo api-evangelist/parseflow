@@ -1,0 +1,105 @@
+apiCommons: rate-limits/0.1
+provider:
+  id: parseflow
+  name: Parseflow
+  docs: https://docs.parseflow.tech/docs/limits
+
+source:
+  reconciled: true
+  references:
+    - https://docs.parseflow.tech/docs/limits
+    - https://docs.parseflow.tech/docs/pricing
+  asOf: 2026-05-27
+
+scope:
+  enforcement: per_api_key
+  identityHeader: X-API-Key
+
+policies:
+  - id: starter-monthly-quota
+    appliesTo:
+      plan: starter
+    type: quota
+    window: rolling_30_days
+    limit: 500
+    unit: request
+    enforcement: hard_cap
+    onExceeded:
+      httpStatus: 429
+      errorCode: MONTHLY_USAGE_EXCEEDED
+      message: Monthly usage exceeded; upgrade plan or wait for the rolling window to advance.
+
+  - id: growth-monthly-quota
+    appliesTo:
+      plan: growth
+    type: quota
+    window: rolling_30_days
+    limit: 1000
+    unit: request
+    enforcement: hard_cap
+    onExceeded:
+      httpStatus: 429
+      errorCode: MONTHLY_USAGE_EXCEEDED
+
+  - id: starter-growth-per-minute
+    appliesTo:
+      plans: [starter, growth]
+    type: rate
+    window: minute
+    limit: 20
+    unit: request
+    onExceeded:
+      httpStatus: 429
+      message: Rate limit exceeded (per-minute).
+
+  - id: byok-per-minute
+    appliesTo:
+      plan: byok
+    type: rate
+    window: minute
+    limit: 5
+    unit: request
+    onExceeded:
+      httpStatus: 429
+
+  - id: upload-size
+    appliesTo:
+      plans: [starter, growth]
+    type: payload
+    limit: 10
+    unit: megabyte
+    target: multipart_upload
+    onExceeded:
+      httpStatus: 413
+      message: Payload too large.
+
+errorMatrix:
+  - status: 400
+    cause: Invalid request data or invalid schema_json.
+  - status: 401
+    cause: Missing or invalid X-API-Key.
+  - status: 413
+    cause: Upload exceeds 10 MB.
+  - status: 422
+    cause: Schema validation failures (FastAPI/Pydantic) or enforce_schema=true mismatch.
+  - status: 429
+    cause: Per-minute rate or monthly quota exceeded (errorCode MONTHLY_USAGE_EXCEEDED for the monthly case).
+  - status: 504
+    cause: Upstream processing timeout (use async jobs for long documents).
+
+observability:
+  introspection:
+    - method: GET
+      path: /v2/usage
+      returns: Remaining monthly quota, plan, period_start/period_end.
+    - method: GET
+      path: /v2/stats
+      returns: Recent usage statistics for the calling key.
+    - method: GET
+      path: /v2/me
+      returns: Identity of the calling API key.
+
+recommendations:
+  - "Use webhook delivery (callback_url) on /v2/jobs instead of polling /v2/jobs/{job_id}; polling consumes one request per call."
+  - "Call /v2/usage before high-volume batch runs to confirm remaining quota."
+  - "Use mode=deterministic for routine extraction; reserve mode=byok_assisted for cases that require model inference, and bill it on your own provider key."
