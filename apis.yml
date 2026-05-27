@@ -1,0 +1,70 @@
+aid: parseflow
+name: Parseflow
+description: Document parsing, extraction, and search API. Parse PDFs, DOCX, TXT, and raw text into structured chunks, extraction fields, and search-ready data. Public REST API with multipart file upload, BYOK support, async jobs with webhook callbacks, batch processing, and a built-in keyword search index. Public Postman demo available.
+url: https://docs.parseflow.tech/apis.yml
+image: https://docs.parseflow.tech/img/logo.svg
+specificationVersion: '0.20'
+created: '2026-05-27'
+modified: '2026-05-27'
+tags:
+  - Document Parsing
+  - PDF
+  - OCR
+  - Text Extraction
+  - Document AI
+  - Search
+  - BYOK
+  - Async Jobs
+  - Webhooks
+  - REST
+apis:
+  - name: Parseflow API
+    description: Process, analyze, and index documents (PDF, DOCX, TXT, raw text) with deterministic and BYOK-LLM modes. Endpoints cover process, analyze, batch, jobs (async with webhook delivery), indexing, search, usage and quota, and Stripe/Whop billing webhooks.
+    humanURL: https://docs.parseflow.tech/
+    baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+    tags:
+      - Document Parsing
+      - Extraction
+      - Search
+      - Async
+    properties:
+      - type: OpenAPI
+        url: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/openapi.json
+      - type: Documentation
+        url: https://docs.parseflow.tech/docs/api-reference
+      - type: GettingStarted
+        url: https://docs.parseflow.tech/docs/getting-started
+      - type: Pricing
+        url: https://docs.parseflow.tech/docs/pricing
+      - type: Postman
+        url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+      - type: Authentication
+        url: https://docs.parseflow.tech/docs/api-reference
+    contact:
+      - FN: Parseflow
+        email: hello@parseflow.tech
+        url: https://docs.parseflow.tech/contact
+common:
+  - type: Website
+    url: https://docs.parseflow.tech/
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/overview
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: APIReference
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Billing
+    url: https://docs.parseflow.tech/docs/billing
+  - type: FAQ
+    url: https://docs.parseflow.tech/docs/faq
+  - type: Limits
+    url: https://docs.parseflow.tech/docs/limits
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Contact
+    url: https://docs.parseflow.tech/contact
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
