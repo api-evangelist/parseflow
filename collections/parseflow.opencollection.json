@@ -1,0 +1,510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stripe Webhook V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/billing/stripe/webhook"
+      },
+      "docs": "Stripe webhook endpoint.\n\nMinimal flow:\n- Verify Stripe signature (if DOCFLOW_STRIPE_WEBHOOK_SECRET is set)\n- On checkout.session.completed, issue a Parseflow API key\n- Return 200 quickly\n\nThis is intentionally minimal for fastest launch."
+    },
+    {
+      "info": {
+        "name": "Whop Webhook V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/webhooks/whop"
+      },
+      "docs": "Whop Webhook V2"
+    },
+    {
+      "info": {
+        "name": "Admin Test Email",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/admin/test-email"
+      },
+      "docs": "Admin-only endpoint to test SMTP delivery without a real purchase."
+    },
+    {
+      "info": {
+        "name": "Health V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/health"
+      },
+      "docs": "Health V2"
+    },
+    {
+      "info": {
+        "name": "Process",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/process",
+        "headers": [
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Process"
+    },
+    {
+      "info": {
+        "name": "Pack",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pack",
+        "headers": [
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Pack"
+    },
+    {
+      "info": {
+        "name": "Process V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/process",
+        "headers": [
+          {
+            "name": "Idempotency-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Client-Id",
+            "value": ""
+          },
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-BYOK-Key",
+            "value": ""
+          },
+          {
+            "name": "X-RapidAPI-Paid-Entitlement",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Process V2"
+    },
+    {
+      "info": {
+        "name": "Analyze V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/analyze",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-BYOK-Key",
+            "value": ""
+          },
+          {
+            "name": "X-RapidAPI-Paid-Entitlement",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Analyze V2"
+    },
+    {
+      "info": {
+        "name": "Stats V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/stats",
+        "headers": [
+          {
+            "name": "X-Client-Id",
+            "value": ""
+          },
+          {
+            "name": "X-API-Key",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Stats V2"
+    },
+    {
+      "info": {
+        "name": "Issue Api Key V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/admin/api-keys",
+        "headers": [
+          {
+            "name": "X-Docflow-Admin-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "form-urlencoded",
+          "data": []
+        }
+      },
+      "docs": "Issue Api Key V2"
+    },
+    {
+      "info": {
+        "name": "Get Key Info V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/me",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Get information about the current API key."
+    },
+    {
+      "info": {
+        "name": "Get Usage V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/usage",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Get usage and quota information for the current API key."
+    },
+    {
+      "info": {
+        "name": "Create Job V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/jobs",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-BYOK-Key",
+            "value": ""
+          },
+          {
+            "name": "X-RapidAPI-Paid-Entitlement",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Create Job V2"
+    },
+    {
+      "info": {
+        "name": "Get Job V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/jobs/:job_id",
+        "params": [
+          {
+            "name": "job_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get Job V2"
+    },
+    {
+      "info": {
+        "name": "Deliver Job V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/jobs/:job_id/deliver",
+        "params": [
+          {
+            "name": "job_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "form-urlencoded",
+          "data": []
+        }
+      },
+      "docs": "Simulate webhook delivery for a job (useful in local testing).\n\nIf callback_url is omitted, the job's deliverables are recorded and a simulated attempt is stored."
+    },
+    {
+      "info": {
+        "name": "Batch V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/batch",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Batch V2"
+    },
+    {
+      "info": {
+        "name": "Index Document V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/index",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "multipart-form",
+          "data": []
+        }
+      },
+      "docs": "Index a document for future search.\n\nThe document is processed (parsed, analyzed, extracted) and added to the search index.\nReturns the document ID that can be used for retrieval."
+    },
+    {
+      "info": {
+        "name": "Search V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/search",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "q",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Search indexed documents by keyword."
+    },
+    {
+      "info": {
+        "name": "List Indexed Documents V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/search/documents",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "List all indexed documents with pagination."
+    },
+    {
+      "info": {
+        "name": "Get Indexed Document V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/search/documents/:document_id",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "document_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a specific indexed document."
+    },
+    {
+      "info": {
+        "name": "Delete Indexed Document V2",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/v2/search/documents/:document_id",
+        "headers": [
+          {
+            "name": "X-API-Key",
+            "value": ""
+          },
+          {
+            "name": "X-Docflow-Gateway-Secret",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "document_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete an indexed document."
+    },
+    {
+      "info": {
+        "name": "Health Check",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      },
+      "docs": "Health check endpoint for deployment monitoring."
+    }
+  ],
+  "bundled": true
+}
