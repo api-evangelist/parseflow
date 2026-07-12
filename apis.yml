@@ -56,6 +56,10 @@ apis:
         email: hello@parseflow.tech
         url: https://docs.parseflow.tech/contact
 common:
+  - type: DomainSecurity
+    url: security/parseflow-domain-security.yml
+  - type: Authentication
+    url: authentication/parseflow-authentication.yml
   - type: Website
     url: https://docs.parseflow.tech/
   - type: Documentation
