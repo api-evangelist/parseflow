@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Health API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Health
+paths:
+  /v2/health:
+    get:
+      summary: Health V2
+      operationId: health_v2_v2_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Health
+  /health:
+    get:
+      summary: Health Check
+      description: Health check endpoint for deployment monitoring.
+      operationId: health_check_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Health
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

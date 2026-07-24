@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Process API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Process
+paths:
+  /process:
+    post:
+      summary: Process
+      operationId: process_process_post
+      parameters:
+      - name: X-Docflow-Gateway-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Gateway-Secret
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_process_process_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Process
+  /v2/process:
+    post:
+      summary: Process V2
+      operationId: process_v2_v2_process_post
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Idempotency-Key
+      - name: X-Client-Id
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Client-Id
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: X-BYOK-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Byok-Key
+      - name: X-RapidAPI-Paid-Entitlement
+        in: header
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: X-Rapidapi-Paid-Entitlement
+      - name: X-Docflow-Gateway-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Gateway-Secret
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_process_v2_v2_process_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Process
+components:
+  schemas:
+    Body_process_v2_v2_process_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            contentMediaType: application/octet-stream
+          - type: 'null'
+          title: File
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: deterministic
+        output_format:
+          type: string
+          title: Output Format
+          default: json
+        include_markdown:
+          type: boolean
+          title: Include Markdown
+          default: false
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        schema_json:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Schema Json
+        enforce_schema:
+          type: boolean
+          title: Enforce Schema
+          default: false
+        byok_provider:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Byok Provider
+        byok_model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Byok Model
+      type: object
+      title: Body_process_v2_v2_process_post
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Body_process_process_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            contentMediaType: application/octet-stream
+          - type: 'null'
+          title: File
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: deterministic
+      type: object
+      title: Body_process_process_post
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

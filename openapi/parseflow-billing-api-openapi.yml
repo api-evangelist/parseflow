@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Billing API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Billing
+paths:
+  /v2/billing/stripe/webhook:
+    post:
+      summary: Stripe Webhook V2
+      description: 'Stripe webhook endpoint.
+
+
+        Minimal flow:
+
+        - Verify Stripe signature (if DOCFLOW_STRIPE_WEBHOOK_SECRET is set)
+
+        - On checkout.session.completed, issue a Parseflow API key
+
+        - Return 200 quickly
+
+
+        This is intentionally minimal for fastest launch.'
+      operationId: stripe_webhook_v2_v2_billing_stripe_webhook_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Billing
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

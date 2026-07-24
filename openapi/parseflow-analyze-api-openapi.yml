@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Analyze API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Analyze
+paths:
+  /v2/analyze:
+    post:
+      summary: Analyze V2
+      operationId: analyze_v2_v2_analyze_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: X-BYOK-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Byok-Key
+      - name: X-RapidAPI-Paid-Entitlement
+        in: header
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: X-Rapidapi-Paid-Entitlement
+      - name: X-Docflow-Gateway-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Gateway-Secret
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_analyze_v2_v2_analyze_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Analyze
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_analyze_v2_v2_analyze_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            contentMediaType: application/octet-stream
+          - type: 'null'
+          title: File
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: deterministic
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        byok_provider:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Byok Provider
+        byok_model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Byok Model
+      type: object
+      title: Body_analyze_v2_v2_analyze_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

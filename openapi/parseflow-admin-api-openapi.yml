@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Admin
+paths:
+  /v2/admin/test-email:
+    post:
+      summary: Admin Test Email
+      description: Admin-only endpoint to test SMTP delivery without a real purchase.
+      operationId: admin_test_email_v2_admin_test_email_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Admin
+  /v2/admin/api-keys:
+    post:
+      summary: Issue Api Key V2
+      operationId: issue_api_key_v2_v2_admin_api_keys_post
+      parameters:
+      - name: X-Docflow-Admin-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Admin-Secret
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Body_issue_api_key_v2_v2_admin_api_keys_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Admin
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_issue_api_key_v2_v2_admin_api_keys_post:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+      type: object
+      title: Body_issue_api_key_v2_v2_admin_api_keys_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

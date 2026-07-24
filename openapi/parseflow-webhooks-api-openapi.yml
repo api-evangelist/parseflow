@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Webhooks API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Webhooks
+paths:
+  /v2/webhooks/whop:
+    post:
+      summary: Whop Webhook V2
+      operationId: whop_webhook_v2_v2_webhooks_whop_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Webhooks
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

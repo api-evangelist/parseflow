@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Index API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Index
+paths:
+  /v2/index:
+    post:
+      summary: Index Document V2
+      description: 'Index a document for future search.
+
+
+        The document is processed (parsed, analyzed, extracted) and added to the search index.
+
+        Returns the document ID that can be used for retrieval.'
+      operationId: index_document_v2_v2_index_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: X-Docflow-Gateway-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Gateway-Secret
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_index_document_v2_v2_index_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Index
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_index_document_v2_v2_index_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            contentMediaType: application/octet-stream
+          - type: 'null'
+          title: File
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        document_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Id
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: basic
+        schema_json:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Schema Json
+      type: object
+      title: Body_index_document_v2_v2_index_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

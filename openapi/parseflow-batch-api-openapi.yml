@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: parseflow Admin Batch API
+  description: Document parsing, extraction, and search API
+  version: 0.2.0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Batch
+paths:
+  /v2/batch:
+    post:
+      summary: Batch V2
+      operationId: batch_v2_v2_batch_post
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Api-Key
+      - name: X-Docflow-Gateway-Secret
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Docflow-Gateway-Secret
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Batch
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BatchDocumentInput:
+      properties:
+        text:
+          type: string
+          title: Text
+        filename:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filename
+        document_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Id
+        chunk_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Size
+        overlap:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Overlap
+        mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mode
+        schema_json:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Schema Json
+      type: object
+      required:
+      - text
+      title: BatchDocumentInput
+    BatchRequest:
+      properties:
+        documents:
+          items:
+            $ref: '#/components/schemas/BatchDocumentInput'
+          type: array
+          title: Documents
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        schema_json:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Schema Json
+        enforce_schema:
+          type: boolean
+          title: Enforce Schema
+          default: false
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: basic
+      type: object
+      title: BatchRequest
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
