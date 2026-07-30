@@ -2,6 +2,19 @@ aid: parseflow
 name: Parseflow
 description: Document parsing, extraction, and search API. Parse PDFs, DOCX, TXT, and raw text into structured chunks, extraction fields, and search-ready data. Public REST API with multipart file upload, BYOK support, async jobs with webhook callbacks, batch processing, and a built-in keyword search index. Public Postman demo available.
 url: https://docs.parseflow.tech/apis.yml
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://docs.parseflow.tech/img/logo.svg
 specificationVersion: '0.20'
 created: '2026-05-27'
@@ -29,32 +42,286 @@ tags:
   - Webhooks
   - REST
 apis:
-  - name: Parseflow API
-    description: Process, analyze, and index documents (PDF, DOCX, TXT, raw text) with deterministic and BYOK-LLM modes. Endpoints cover process, analyze, batch, jobs (async with webhook delivery), indexing, search, usage and quota, and Stripe/Whop billing webhooks.
-    humanURL: https://docs.parseflow.tech/
-    baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
-    tags:
-      - Document Parsing
-      - Extraction
-      - Search
-      - Async
-    properties:
-      - type: OpenAPI
-        url: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/openapi.json
-      - type: Documentation
-        url: https://docs.parseflow.tech/docs/api-reference
-      - type: GettingStarted
-        url: https://docs.parseflow.tech/docs/getting-started
-      - type: Pricing
-        url: https://docs.parseflow.tech/docs/pricing
-      - type: Postman
-        url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
-      - type: Authentication
-        url: https://docs.parseflow.tech/docs/api-reference
-    contact:
-      - FN: Parseflow
-        email: hello@parseflow.tech
-        url: https://docs.parseflow.tech/contact
+- aid: parseflow:parseflow-admin-api
+  name: Parseflow Admin API
+  description: The Admin API from Parseflow — 2 operation(s) for admin.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-admin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-analyze-api
+  name: Parseflow Analyze API
+  description: The Analyze API from Parseflow — 1 operation(s) for analyze.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Analyze
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-analyze-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-batch-api
+  name: Parseflow Batch API
+  description: The Batch API from Parseflow — 1 operation(s) for batch.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-batch-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-billing-api
+  name: Parseflow Billing API
+  description: The Billing API from Parseflow — 1 operation(s) for billing.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-health-api
+  name: Parseflow Health API
+  description: The Health API from Parseflow — 2 operation(s) for health.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-index-api
+  name: Parseflow Index API
+  description: The Index API from Parseflow — 1 operation(s) for index.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Index
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-index-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-jobs-api
+  name: Parseflow Jobs API
+  description: The Jobs API from Parseflow — 3 operation(s) for jobs.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-me-api
+  name: Parseflow Me API
+  description: The Me API from Parseflow — 1 operation(s) for me.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Me
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-me-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-pack-api
+  name: Parseflow Pack API
+  description: The Pack API from Parseflow — 1 operation(s) for pack.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Pack
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-pack-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-process-api
+  name: Parseflow Process API
+  description: The Process API from Parseflow — 2 operation(s) for process.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Process
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-process-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-search-api
+  name: Parseflow Search API
+  description: The Search API from Parseflow — 3 operation(s) for search.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-stats-api
+  name: Parseflow Stats API
+  description: The Stats API from Parseflow — 1 operation(s) for stats.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-stats-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-usage-api
+  name: Parseflow Usage API
+  description: The Usage API from Parseflow — 1 operation(s) for usage.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
+- aid: parseflow:parseflow-webhooks-api
+  name: Parseflow Webhooks API
+  description: The Webhooks API from Parseflow — 1 operation(s) for webhooks.
+  humanURL: https://docs.parseflow.tech/
+  baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/parseflow-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.parseflow.tech/docs/api-reference
+  - type: GettingStarted
+    url: https://docs.parseflow.tech/docs/getting-started
+  - type: Pricing
+    url: https://docs.parseflow.tech/docs/pricing
+  - type: Postman
+    url: https://documenter.getpostman.com/view/54564964/2sBXwmPsb9
+  - type: Authentication
+    url: https://docs.parseflow.tech/docs/api-reference
 common:
   - type: AgenticAccess
     url: agentic-access/parseflow-agentic-access.yml
