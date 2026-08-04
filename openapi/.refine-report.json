@@ -1,0 +1,40 @@
+{
+  "provider": "parseflow",
+  "sources": [
+    "parseflow-admin-api-openapi.yml",
+    "parseflow-analyze-api-openapi.yml",
+    "parseflow-batch-api-openapi.yml",
+    "parseflow-billing-api-openapi.yml",
+    "parseflow-health-api-openapi.yml",
+    "parseflow-index-api-openapi.yml",
+    "parseflow-jobs-api-openapi.yml",
+    "parseflow-me-api-openapi.yml",
+    "parseflow-pack-api-openapi.yml",
+    "parseflow-process-api-openapi.yml",
+    "parseflow-search-api-openapi.yml",
+    "parseflow-stats-api-openapi.yml",
+    "parseflow-usage-api-openapi.yml",
+    "parseflow-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "parseflow-admin-api-openapi.yml",
+    "parseflow-analyze-api-openapi.yml",
+    "parseflow-batch-api-openapi.yml",
+    "parseflow-billing-api-openapi.yml",
+    "parseflow-health-api-openapi.yml",
+    "parseflow-index-api-openapi.yml",
+    "parseflow-jobs-api-openapi.yml",
+    "parseflow-me-api-openapi.yml",
+    "parseflow-pack-api-openapi.yml",
+    "parseflow-process-api-openapi.yml",
+    "parseflow-search-api-openapi.yml",
+    "parseflow-stats-api-openapi.yml",
+    "parseflow-usage-api-openapi.yml",
+    "parseflow-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
