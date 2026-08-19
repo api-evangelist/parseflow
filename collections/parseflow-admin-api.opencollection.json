@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow Admin API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Admin Test Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/admin/test-email"
+          },
+          "docs": "Admin-only endpoint to test SMTP delivery without a real purchase."
+        },
+        {
+          "info": {
+            "name": "Issue Api Key V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/admin/api-keys",
+            "headers": [
+              {
+                "name": "X-Docflow-Admin-Secret",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Issue Api Key V2"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

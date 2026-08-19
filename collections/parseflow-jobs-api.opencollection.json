@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow Admin Jobs API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Job V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/jobs",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-BYOK-Key",
+                "value": ""
+              },
+              {
+                "name": "X-RapidAPI-Paid-Entitlement",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Create Job V2"
+        },
+        {
+          "info": {
+            "name": "Get Job V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Job V2"
+        },
+        {
+          "info": {
+            "name": "Deliver Job V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/jobs/:job_id/deliver",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Simulate webhook delivery for a job (useful in local testing).\n\nIf callback_url is omitted, the job's deliverables are recorded and a simulated attempt is stored."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

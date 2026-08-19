@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow Admin Index API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Index Document V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/index",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Index a document for future search.\n\nThe document is processed (parsed, analyzed, extracted) and added to the search index.\nReturns the document ID that can be used for retrieval."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

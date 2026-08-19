@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "05c2c14d-1dbe-48d7-a17a-fe0675a91489",
+      "name": "Batch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec88e78e-7f91-4506-ac3e-e2ee7c692187",
+          "name": "Batch V2",
+          "request": {
+            "name": "Batch V2",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-API-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "X-Docflow-Gateway-Secret",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documents\": [\n    {\n      \"text\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"document_id\": \"<string>\",\n      \"chunk_size\": \"<integer>\",\n      \"overlap\": \"<integer>\",\n      \"mode\": \"<string>\",\n      \"schema_json\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"text\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"document_id\": \"<string>\",\n      \"chunk_size\": \"<integer>\",\n      \"overlap\": \"<integer>\",\n      \"mode\": \"<string>\",\n      \"schema_json\": {\n        \"key_0\": false,\n        \"key_1\": 9535,\n        \"key_2\": 3632.952319085624\n      }\n    }\n  ],\n  \"preset\": \"<string>\",\n  \"schema_json\": {\n    \"key_0\": \"string\"\n  },\n  \"enforce_schema\": false,\n  \"chunk_size\": 2000,\n  \"overlap\": 200,\n  \"mode\": \"basic\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bea05659-bde8-4a7a-b3f7-1b5ff18a0c90",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Docflow-Gateway-Secret",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documents\": [\n    {\n      \"text\": \"string\",\n      \"filename\": \"string\",\n      \"document_id\": \"string\",\n      \"chunk_size\": 2686,\n      \"overlap\": 1236,\n      \"mode\": \"string\",\n      \"schema_json\": {\n        \"key_0\": true\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"filename\": \"string\",\n      \"document_id\": \"string\",\n      \"chunk_size\": 9876,\n      \"overlap\": 819,\n      \"mode\": \"string\",\n      \"schema_json\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"preset\": \"<string>\",\n  \"schema_json\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"enforce_schema\": false,\n  \"chunk_size\": 2000,\n  \"overlap\": 200,\n  \"mode\": \"basic\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffb562ea-3ae2-4161-8a64-290d8675f835",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-API-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Docflow-Gateway-Secret",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documents\": [\n    {\n      \"text\": \"string\",\n      \"filename\": \"string\",\n      \"document_id\": \"string\",\n      \"chunk_size\": 2686,\n      \"overlap\": 1236,\n      \"mode\": \"string\",\n      \"schema_json\": {\n        \"key_0\": true\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"filename\": \"string\",\n      \"document_id\": \"string\",\n      \"chunk_size\": 9876,\n      \"overlap\": 819,\n      \"mode\": \"string\",\n      \"schema_json\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"preset\": \"<string>\",\n  \"schema_json\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"enforce_schema\": false,\n  \"chunk_size\": 2000,\n  \"overlap\": 200,\n  \"mode\": \"basic\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b1841a1-b36f-49f5-ab2d-528dcbc97c58",
+    "name": "parseflow Admin Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Document parsing, extraction, and search API",
+      "type": "text/plain"
+    }
+  }
+}

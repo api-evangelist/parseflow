@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow Admin Billing API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stripe Webhook V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/billing/stripe/webhook"
+          },
+          "docs": "Stripe webhook endpoint.\n\nMinimal flow:\n- Verify Stripe signature (if DOCFLOW_STRIPE_WEBHOOK_SECRET is set)\n- On checkout.session.completed, issue a Parseflow API key\n- Return 200 quickly\n\nThis is intentionally minimal for fastest launch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

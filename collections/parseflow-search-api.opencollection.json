@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "parseflow Admin Search API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/search",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search indexed documents by keyword."
+        },
+        {
+          "info": {
+            "name": "List Indexed Documents V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/search/documents",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all indexed documents with pagination."
+        },
+        {
+          "info": {
+            "name": "Get Indexed Document V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/search/documents/:document_id",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific indexed document."
+        },
+        {
+          "info": {
+            "name": "Delete Indexed Document V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/search/documents/:document_id",
+            "headers": [
+              {
+                "name": "X-API-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Docflow-Gateway-Secret",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an indexed document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
