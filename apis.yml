@@ -39,6 +39,17 @@ tags:
   - Search
   - BYOK
   - Async Jobs
+  - Webhook
+  - REST
+tags_raw:
+  - Document Parsing
+  - PDF
+  - OCR
+  - Text Extraction
+  - Document AI
+  - Search
+  - BYOK
+  - Async Jobs
   - Webhooks
   - REST
 apis:
@@ -168,6 +179,8 @@ apis:
   humanURL: https://docs.parseflow.tech/
   baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -228,6 +241,8 @@ apis:
   humanURL: https://docs.parseflow.tech/
   baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
   tags:
+  - Processes
+  tags_raw:
   - Process
   properties:
   - type: OpenAPI
@@ -308,6 +323,8 @@ apis:
   humanURL: https://docs.parseflow.tech/
   baseURL: https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
