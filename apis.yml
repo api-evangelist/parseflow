@@ -2,6 +2,18 @@ aid: parseflow
 name: Parseflow
 description: Document parsing, extraction, and search API. Parse PDFs, DOCX, TXT, and raw text into structured chunks, extraction fields, and search-ready data. Public REST API with multipart file upload, BYOK support, async jobs with webhook callbacks, batch processing, and a built-in keyword search index. Public Postman demo available.
 url: https://docs.parseflow.tech/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
