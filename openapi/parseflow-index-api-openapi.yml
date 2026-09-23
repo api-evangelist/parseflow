@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: parseflow Admin Index API
+  title: parseflow Index API
   description: Document parsing, extraction, and search API
   version: 0.2.0
 security:
@@ -56,6 +56,15 @@ paths:
       - Index
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -119,15 +128,6 @@ components:
           title: Schema Json
       type: object
       title: Body_index_document_v2_v2_index_post
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
