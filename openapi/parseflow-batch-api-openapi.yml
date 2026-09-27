@@ -51,46 +51,6 @@ paths:
       - Batch
 components:
   schemas:
-    BatchDocumentInput:
-      properties:
-        text:
-          type: string
-          title: Text
-        filename:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Filename
-        document_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Document Id
-        chunk_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Chunk Size
-        overlap:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Overlap
-        mode:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Mode
-        schema_json:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Schema Json
-      type: object
-      required:
-      - text
-      title: BatchDocumentInput
     HTTPValidationError:
       properties:
         detail:
@@ -162,6 +122,46 @@ components:
           default: basic
       type: object
       title: BatchRequest
+    BatchDocumentInput:
+      properties:
+        text:
+          type: string
+          title: Text
+        filename:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filename
+        document_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Document Id
+        chunk_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Size
+        overlap:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Overlap
+        mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mode
+        schema_json:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Schema Json
+      type: object
+      required:
+      - text
+      title: BatchDocumentInput
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

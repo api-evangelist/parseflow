@@ -148,6 +148,33 @@ components:
       - msg
       - type
       title: ValidationError
+    Body_process_process_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            contentMediaType: application/octet-stream
+          - type: 'null'
+          title: File
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: deterministic
+      type: object
+      title: Body_process_process_post
     Body_process_v2_v2_process_post:
       properties:
         file:
@@ -207,33 +234,6 @@ components:
           title: Byok Model
       type: object
       title: Body_process_v2_v2_process_post
-    Body_process_process_post:
-      properties:
-        file:
-          anyOf:
-          - type: string
-            contentMediaType: application/octet-stream
-          - type: 'null'
-          title: File
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-        chunk_size:
-          type: integer
-          title: Chunk Size
-          default: 2000
-        overlap:
-          type: integer
-          title: Overlap
-          default: 200
-        mode:
-          type: string
-          title: Mode
-          default: deterministic
-      type: object
-      title: Body_process_process_post
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
