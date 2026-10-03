@@ -171,15 +171,15 @@ components:
           title: Byok Model
       type: object
       title: Body_create_job_v2_v2_jobs_post
-    HTTPValidationError:
+    Body_deliver_job_v2_v2_jobs__job_id__deliver_post:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
       type: object
-      title: HTTPValidationError
+      title: Body_deliver_job_v2_v2_jobs__job_id__deliver_post
     ValidationError:
       properties:
         loc:
@@ -206,15 +206,15 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_deliver_job_v2_v2_jobs__job_id__deliver_post:
+    HTTPValidationError:
       properties:
-        callback_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Callback Url
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: Body_deliver_job_v2_v2_jobs__job_id__deliver_post
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
