@@ -55,15 +55,6 @@ paths:
       - Admin
 components:
   schemas:
-    Body_issue_api_key_v2_v2_admin_api_keys_post:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-      type: object
-      title: Body_issue_api_key_v2_v2_admin_api_keys_post
     ValidationError:
       properties:
         loc:
@@ -99,6 +90,15 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Body_issue_api_key_v2_v2_admin_api_keys_post:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+      type: object
+      title: Body_issue_api_key_v2_v2_admin_api_keys_post
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
