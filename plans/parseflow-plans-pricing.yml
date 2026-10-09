@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 apiCommons: plans/0.1
 provider:
   id: parseflow
@@ -120,3 +124,28 @@ requestCountingRules:
   - "Each call to /v2/jobs counts as 1 request."
   - "Each poll of /v2/jobs/{job_id} counts as 1 request — prefer webhook delivery."
   - "Each item inside a /v2/batch payload still consumes 1 request from the monthly cap."
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Starter
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: Growth
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods: []
+  - name: BYOK Advanced Lane
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
