@@ -51,15 +51,68 @@ paths:
       - Batch
 components:
   schemas:
-    HTTPValidationError:
+    BatchRequest:
       properties:
-        detail:
+        documents:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/BatchDocumentInput'
           type: array
-          title: Detail
+          title: Documents
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        schema_json:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Schema Json
+        enforce_schema:
+          type: boolean
+          title: Enforce Schema
+          default: false
+        chunk_size:
+          type: integer
+          title: Chunk Size
+          default: 2000
+        overlap:
+          type: integer
+          title: Overlap
+          default: 200
+        mode:
+          type: string
+          title: Mode
+          default: basic
       type: object
-      title: HTTPValidationError
+      title: BatchRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     BatchDocumentInput:
       properties:
         text:
@@ -100,68 +153,15 @@ components:
       required:
       - text
       title: BatchDocumentInput
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          title: Detail
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    BatchRequest:
-      properties:
-        documents:
-          items:
-            $ref: '#/components/schemas/BatchDocumentInput'
-          type: array
-          title: Documents
-        preset:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Preset
-        schema_json:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Schema Json
-        enforce_schema:
-          type: boolean
-          title: Enforce Schema
-          default: false
-        chunk_size:
-          type: integer
-          title: Chunk Size
-          default: 2000
-        overlap:
-          type: integer
-          title: Overlap
-          default: 200
-        mode:
-          type: string
-          title: Mode
-          default: basic
-      type: object
-      title: BatchRequest
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
