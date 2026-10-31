@@ -1,4 +1,4 @@
-# Parseflow (parseflow)
+# Parseflow
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,183 @@
 
 Document parsing, extraction, and search API. Parse PDFs, DOCX, TXT, and raw text into structured chunks, extraction fields, and search-ready data. Public REST API with multipart file upload, BYOK support, async jobs with webhook callbacks, batch processing, and a built-in keyword search index. Public Postman demo available.
 
-**APIs.json:** [https://docs.parseflow.tech/apis.yml](https://docs.parseflow.tech/apis.yml)
+**Areas:** Document Parsing · PDF · OCR · Text Extraction · Document AI · Search · BYOK · AsyncJobs · Webhook · REST
 
-## Tags
+## Parseflow on APIs.io
 
-- Document Parsing
-- PDF
-- OCR
-- Text Extraction
-- Document AI
-- Search
-- BYOK
-- Async Jobs
-- Webhooks
-- REST
+Everything profiled for Parseflow is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/parseflow/](https://apis.io/providers/parseflow/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (14)
 
-- **Created:** 2026-05-27
-- **Modified:** 2026-05-27
+- [Parseflow Admin API](https://apis.io/apis/parseflow/parseflow-admin-api/) — The Admin API from Parseflow — 2 operation(s) for admin.
+- [Parseflow Analyze API](https://apis.io/apis/parseflow/parseflow-analyze-api/) — The Analyze API from Parseflow — 1 operation(s) for analyze.
+- [Parseflow Batch API](https://apis.io/apis/parseflow/parseflow-batch-api/) — The Batch API from Parseflow — 1 operation(s) for batch.
+- [Parseflow Billing API](https://apis.io/apis/parseflow/parseflow-billing-api/) — The Billing API from Parseflow — 1 operation(s) for billing.
+- [Parseflow Health API](https://apis.io/apis/parseflow/parseflow-health-api/) — The Health API from Parseflow — 2 operation(s) for health.
+- [Parseflow Index API](https://apis.io/apis/parseflow/parseflow-index-api/) — The Index API from Parseflow — 1 operation(s) for index.
+- [Parseflow Jobs API](https://apis.io/apis/parseflow/parseflow-jobs-api/) — The Jobs API from Parseflow — 3 operation(s) for jobs.
+- [Parseflow Me API](https://apis.io/apis/parseflow/parseflow-me-api/) — The Me API from Parseflow — 1 operation(s) for me.
+- [Parseflow Pack API](https://apis.io/apis/parseflow/parseflow-pack-api/) — The Pack API from Parseflow — 1 operation(s) for pack.
+- [Parseflow Process API](https://apis.io/apis/parseflow/parseflow-process-api/) — The Process API from Parseflow — 2 operation(s) for process.
+- [Parseflow Search API](https://apis.io/apis/parseflow/parseflow-search-api/) — The Search API from Parseflow — 3 operation(s) for search.
+- [Parseflow Stats API](https://apis.io/apis/parseflow/parseflow-stats-api/) — The Stats API from Parseflow — 1 operation(s) for stats.
+- [Parseflow Usage API](https://apis.io/apis/parseflow/parseflow-usage-api/) — The Usage API from Parseflow — 1 operation(s) for usage.
+- [Parseflow Webhooks API](https://apis.io/apis/parseflow/parseflow-webhooks-api/) — The Webhooks API from Parseflow — 1 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### Parseflow API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Process, analyze, and index documents (PDF, DOCX, TXT, raw text) with deterministic and BYOK-LLM modes. Endpoints cover process, analyze, batch, jobs (async with webhook delivery), indexing, search, usage and quota, and Stripe/Whop billing webhooks.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.parseflow.tech/](https://docs.parseflow.tech/)
-- **Base URL:** `https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Parseflow Agentic Access](https://apis.io/agentic-access/parseflow/parseflow-agentic-access/)
 
-- Document Parsing
-- Extraction
-- Search
-- Async
+#### JSON Schema (7)
 
-#### Properties
+The data models the API reads and writes.
 
-- [OpenAPI](https://parseflow-api.thankfulisland-fec0f8f2.westus2.azurecontainerapps.io/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Documentation](https://docs.parseflow.tech/docs/api-reference)
-- [Getting Started](https://docs.parseflow.tech/docs/getting-started)
-- [Pricing](https://docs.parseflow.tech/docs/pricing)
-- [Postman](https://documenter.getpostman.com/view/54564964/2sBXwmPsb9) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Authentication](https://docs.parseflow.tech/docs/api-reference)
-- [Postman Collection](collections/parseflow.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/parseflow.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Parseflow Batch Request](https://apis.io/schemas/parseflow/parseflow-batch-request/)
+- [Parseflow Indexed Document](https://apis.io/schemas/parseflow/parseflow-indexed-document/)
+- [Parseflow Job Status](https://apis.io/schemas/parseflow/parseflow-job-status/)
+- [Parseflow Process Request](https://apis.io/schemas/parseflow/parseflow-process-request/)
+- [Parseflow Process Response](https://apis.io/schemas/parseflow/parseflow-process-response/)
+- [Parseflow Search Response](https://apis.io/schemas/parseflow/parseflow-search-response/)
+- [Parseflow Usage and Quota](https://apis.io/schemas/parseflow/parseflow-usage/)
 
-## Common Properties
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Parseflow Context](https://apis.io/jsonld/parseflow/parseflow-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Parseflow Vocabulary](https://apis.io/vocabularies/parseflow/parseflow-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Parseflow Async Job Example](https://apis.io/examples/parseflow/parseflow-async-job-example/)
+- [Parseflow Batch Example](https://apis.io/examples/parseflow/parseflow-batch-example/)
+- [Parseflow Process Example](https://apis.io/examples/parseflow/parseflow-process-example/)
+- [Parseflow Search Example](https://apis.io/examples/parseflow/parseflow-search-example/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [parseflow](https://apis.io/collections/parseflow/open-parseflow/)
+- [parseflow Admin API](https://apis.io/collections/parseflow/open-parseflow-admin-api/)
+- [parseflow Admin Analyze API](https://apis.io/collections/parseflow/open-parseflow-analyze-api/)
+- [parseflow Admin Batch API](https://apis.io/collections/parseflow/open-parseflow-batch-api/)
+- [parseflow Admin Billing API](https://apis.io/collections/parseflow/open-parseflow-billing-api/)
+- [parseflow Admin Health API](https://apis.io/collections/parseflow/open-parseflow-health-api/)
+- [parseflow Admin Index API](https://apis.io/collections/parseflow/open-parseflow-index-api/)
+- [parseflow Admin Jobs API](https://apis.io/collections/parseflow/open-parseflow-jobs-api/)
+- [parseflow Admin Me API](https://apis.io/collections/parseflow/open-parseflow-me-api/)
+- [parseflow Admin Pack API](https://apis.io/collections/parseflow/open-parseflow-pack-api/)
+- [parseflow Admin Process API](https://apis.io/collections/parseflow/open-parseflow-process-api/)
+- [parseflow Admin Search API](https://apis.io/collections/parseflow/open-parseflow-search-api/)
+- [parseflow Admin Stats API](https://apis.io/collections/parseflow/open-parseflow-stats-api/)
+- [parseflow Admin Usage API](https://apis.io/collections/parseflow/open-parseflow-usage-api/)
+- [parseflow Admin Webhooks API](https://apis.io/collections/parseflow/open-parseflow-webhooks-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Parseflow — jsonschema rules](https://apis.io/rules/parseflow/parseflow-jsonschema-spectral-rules/)
+- [Parseflow API Rules](https://apis.io/rules/parseflow/parseflow-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Parseflow Authentication](https://apis.io/security/parseflow/parseflow-authentication/)
+- [Parseflow Domain Security](https://apis.io/security/parseflow/parseflow-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Parseflow Plans Pricing](https://apis.io/plans/parseflow/parseflow-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Parseflow Rate Limits](https://apis.io/rate-limits/parseflow/parseflow-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Parseflow Finops](https://apis.io/finops/parseflow/parseflow-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://docs.parseflow.tech/)
 - [Documentation](https://docs.parseflow.tech/docs/overview)
-- [Getting Started](https://docs.parseflow.tech/docs/getting-started)
-- [API Reference](https://docs.parseflow.tech/docs/api-reference)
+- [Getting started](https://docs.parseflow.tech/docs/getting-started)
+- [API reference](https://docs.parseflow.tech/docs/api-reference)
 - [Pricing](https://docs.parseflow.tech/docs/pricing)
-- [Billing](https://docs.parseflow.tech/docs/billing)
-- [F A Q](https://docs.parseflow.tech/docs/faq)
-- [Limits](https://docs.parseflow.tech/docs/limits)
-- [Postman](https://documenter.getpostman.com/view/54564964/2sBXwmPsb9) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Contact](https://docs.parseflow.tech/contact)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 20.2 |
+| Access clarity | 13.2 |
+
+**Agent readiness 30.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/parseflow/](https://apis.io/providers/parseflow/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Parseflow: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/parseflow/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
